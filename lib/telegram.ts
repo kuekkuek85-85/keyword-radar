@@ -35,6 +35,16 @@ function escapeHtml(s: string): string {
     .replace(/>/g, "&gt;");
 }
 
+// 대략 3줄 분량으로 스니펫을 자르고, 단어 중간이 잘리지 않도록 마지막 공백에서 끊는다.
+const SNIPPET_MAX_CHARS = 180;
+
+function truncateSnippet(text: string): string {
+  if (text.length <= SNIPPET_MAX_CHARS) return text;
+  const cut = text.slice(0, SNIPPET_MAX_CHARS);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut) + "…";
+}
+
 /** 자료 1건을 저장/취소 인라인 버튼과 함께 발송. 반환값은 message_id. */
 export async function sendItemMessage(
   chatId: string,
@@ -44,11 +54,11 @@ export async function sendItemMessage(
 ): Promise<number> {
   const label = SOURCE_LABEL[item.source] ?? item.source;
   const lines = [
+    `🏷 <b>${escapeHtml(keywordText)}</b> · ${label}`,
+    "",
     `<b>${escapeHtml(item.title)}</b>`,
+    truncateSnippet(escapeHtml(item.snippet)),
     "",
-    escapeHtml(item.snippet).slice(0, 400),
-    "",
-    `${label} · 🏷 ${escapeHtml(keywordText)}`,
     item.url,
   ];
 
