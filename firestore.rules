@@ -1,0 +1,32 @@
+rules_version = '2';
+
+// 키워드 레이더 Firestore 보안 규칙.
+// - 웹앱: 허용된 이메일로 로그인한 본인만 읽기·쓰기.
+// - 서버(Cron/웹훅): Admin SDK 는 규칙을 우회하므로 별도 허용 불필요.
+//
+// 배포 전 아래 ALLOWED_EMAILS 를 본인 이메일로 바꾸세요.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAllowedUser() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in [
+            'you@example.com'
+          ];
+    }
+
+    match /keywords/{id} {
+      allow read, write: if isAllowedUser();
+    }
+
+    match /saved_items/{id} {
+      allow read, write: if isAllowedUser();
+    }
+
+    // scan_history 는 서버(Admin SDK)만 기록. 웹앱에서는 접근 불필요.
+    match /scan_history/{id} {
+      allow read, write: if false;
+    }
+  }
+}
