@@ -1,4 +1,4 @@
-import type { SearchResult } from "./types.ts";
+import type { SearchResult } from "./types.js";
 
 // 텔레그램 Bot API 얇은 래퍼.
 

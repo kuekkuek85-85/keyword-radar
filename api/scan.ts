@@ -1,10 +1,10 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getDb } from "../lib/firebaseAdmin.ts";
-import { searchWeb } from "../lib/search/web.ts";
-import { searchYouTube } from "../lib/search/youtube.ts";
-import { sendItemMessage } from "../lib/telegram.ts";
-import { urlHash, normalizeUrl } from "../lib/dedupe.ts";
-import type { Keyword, ScanHistoryItem, SearchResult } from "../lib/types.ts";
+import { getDb } from "../lib/firebaseAdmin.js";
+import { searchWeb } from "../lib/search/web.js";
+import { searchYouTube } from "../lib/search/youtube.js";
+import { sendItemMessage } from "../lib/telegram.js";
+import { urlHash, normalizeUrl } from "../lib/dedupe.js";
+import type { Keyword, ScanHistoryItem, SearchResult } from "../lib/types.js";
 
 // Vercel Cron 이 정기 호출하는 스캔 엔드포인트.
 // 활성 키워드마다 웹/유튜브를 검색해 신규 자료를 텔레그램으로 알립니다.

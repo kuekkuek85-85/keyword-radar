@@ -1,4 +1,4 @@
-import type { SearchResult } from "../types.ts";
+import type { SearchResult } from "../types.js";
 
 // 웹 검색 어댑터. SEARCH_PROVIDER 환경변수로 Serper / Tavily 를 전환합니다.
 // 두 제공자의 응답을 공용 SearchResult 형태로 정규화합니다.

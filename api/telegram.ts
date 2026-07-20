@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getDb } from "../lib/firebaseAdmin.ts";
-import { answerCallback, markSaved, dismissMessage } from "../lib/telegram.ts";
-import type { ScanHistoryItem, SavedItem } from "../lib/types.ts";
+import { getDb } from "../lib/firebaseAdmin.js";
+import { answerCallback, markSaved, dismissMessage } from "../lib/telegram.js";
+import type { ScanHistoryItem, SavedItem } from "../lib/types.js";
 
 // 텔레그램 웹훅. 인라인 버튼(저장/취소) 콜백을 처리합니다.
 // 응답성: 즉시 answerCallbackQuery 로 응답 후 Firestore 작업을 진행합니다.

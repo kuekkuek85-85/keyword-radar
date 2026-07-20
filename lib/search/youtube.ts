@@ -1,4 +1,4 @@
-import type { SearchResult } from "../types.ts";
+import type { SearchResult } from "../types.js";
 
 // YouTube Data API v3 검색 어댑터.
 
