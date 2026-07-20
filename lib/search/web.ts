@@ -24,7 +24,7 @@ async function searchSerper(query: string, lang: "ko" | "en", limit: number): Pr
       gl: lang === "ko" ? "kr" : "us",
       hl: lang,
       num: limit,
-      tbs: "qdr:w", // 최근 1주 (신규 자료 위주)
+      tbs: "qdr:d", // 최근 1일 (신규 자료 위주)
     }),
   });
   if (!res.ok) throw new Error(`Serper 검색 실패: ${res.status}`);

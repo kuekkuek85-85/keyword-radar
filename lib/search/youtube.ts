@@ -22,8 +22,8 @@ export async function searchYouTube(
   const key = process.env.YOUTUBE_API_KEY;
   if (!key) throw new Error("YOUTUBE_API_KEY 환경변수가 설정되지 않았습니다.");
 
-  // 최근 7일 이내 업로드된 영상만 (신규 자료 위주)
-  const publishedAfter = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  // 최근 1일 이내 업로드된 영상만 (신규 자료 위주)
+  const publishedAfter = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
   const params = new URLSearchParams({
     key,
